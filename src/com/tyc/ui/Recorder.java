@@ -8,17 +8,6 @@ package com.tyc.ui;
 import com.tyc.utils.AudioManager;
 import com.tyc.utils.Plotter;
 import com.tyc.utils.AudioRecorder;
-import com.tyc.utils.PlotterTask;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.util.Arrays;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import org.jfree.ui.RefineryUtilities;
 
 /**
  *
@@ -27,14 +16,13 @@ import org.jfree.ui.RefineryUtilities;
 public class Recorder extends javax.swing.JFrame {
 
     Thread recorder;
-    AudioManager am;
-    Plotter plotter;
     public Recorder() {
         initComponents();
-        am = new AudioManager();
-        btnPlay.setEnabled(false);
+        btnPlayInput.setEnabled(false);
+        btnPlayOutput.setEnabled(false);
         btnStop.setEnabled(false);
-        btnPlot.setEnabled(false);
+        btnPlotInput.setEnabled(false);
+        btnPlotOutput.setEnabled(false);
     }
 
     /**
@@ -48,8 +36,10 @@ public class Recorder extends javax.swing.JFrame {
 
         btnStart = new javax.swing.JButton();
         btnStop = new javax.swing.JButton();
-        btnPlot = new javax.swing.JButton();
-        btnPlay = new javax.swing.JButton();
+        btnPlotInput = new javax.swing.JButton();
+        btnPlayInput = new javax.swing.JButton();
+        btnPlotOutput = new javax.swing.JButton();
+        btnPlayOutput = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -69,19 +59,35 @@ public class Recorder extends javax.swing.JFrame {
             }
         });
 
-        btnPlot.setText("Graficar");
-        btnPlot.setActionCommand("Plot");
-        btnPlot.addActionListener(new java.awt.event.ActionListener() {
+        btnPlotInput.setText("Graficar entrada");
+        btnPlotInput.setActionCommand("PlotInput");
+        btnPlotInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPlotActionPerformed(evt);
+                btnPlotInputActionPerformed(evt);
             }
         });
 
-        btnPlay.setText("Reproducir");
-        btnPlay.setActionCommand("Play");
-        btnPlay.addActionListener(new java.awt.event.ActionListener() {
+        btnPlayInput.setActionCommand("PlayInput");
+        btnPlayInput.setLabel("Reproducir entrada");
+        btnPlayInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPlayActionPerformed(evt);
+                btnPlayInputActionPerformed(evt);
+            }
+        });
+
+        btnPlotOutput.setText("Graficar salida");
+        btnPlotOutput.setActionCommand("PlotOutput");
+        btnPlotOutput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPlotOutputActionPerformed(evt);
+            }
+        });
+
+        btnPlayOutput.setText("Reproducir salida");
+        btnPlayOutput.setActionCommand("PlayOutput");
+        btnPlayOutput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPlayOutputActionPerformed(evt);
             }
         });
 
@@ -91,15 +97,20 @@ public class Recorder extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnStart)
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnPlot)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnStop)
+                        .addComponent(btnStart)
                         .addGap(18, 18, 18)
-                        .addComponent(btnPlay)))
-                .addContainerGap(12, Short.MAX_VALUE))
+                        .addComponent(btnStop))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(btnPlotOutput, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnPlotInput, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnPlayInput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnPlayOutput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(158, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,15 +118,22 @@ public class Recorder extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnStart)
-                    .addComponent(btnStop)
-                    .addComponent(btnPlay))
+                    .addComponent(btnStop))
                 .addGap(18, 18, 18)
-                .addComponent(btnPlot)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnPlotInput)
+                    .addComponent(btnPlayInput))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnPlotOutput)
+                    .addComponent(btnPlayOutput))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
 
-        btnPlot.getAccessibleContext().setAccessibleName("btnPlot");
-        btnPlay.getAccessibleContext().setAccessibleName("Play");
+        btnPlotInput.getAccessibleContext().setAccessibleName("PlotInput");
+        btnPlayInput.getAccessibleContext().setAccessibleName("PlayInput");
+        btnPlotOutput.getAccessibleContext().setAccessibleName("btnPlotOutput");
+        btnPlayOutput.getAccessibleContext().setAccessibleName("btnPlayOutput");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -124,8 +142,8 @@ public class Recorder extends javax.swing.JFrame {
         recorder = new Thread(new AudioRecorder());
         recorder.start();
         btnStart.setEnabled(false);
-        btnPlay.setEnabled(false);
-        btnPlot.setEnabled(false);
+        btnPlayInput.setEnabled(false);
+        btnPlotInput.setEnabled(false);
         btnStop.setEnabled(true);
     }//GEN-LAST:event_btnStartActionPerformed
 
@@ -133,24 +151,32 @@ public class Recorder extends javax.swing.JFrame {
         recorder.stop();
         btnStart.setEnabled(true);
         btnStop.setEnabled(false);
-        btnPlot.setEnabled(true);
-        btnPlay.setEnabled(true);
+        btnPlotInput.setEnabled(true);
+        btnPlayInput.setEnabled(true);
     }//GEN-LAST:event_btnStopActionPerformed
 
-    private void btnPlotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlotActionPerformed
+    private void btnPlotInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlotInputActionPerformed
         System.out.println("Leyendo el archivo de audio");
-        double[] data = am.read("Grabacion.wav");
+        double[] data = AudioManager.read("Grabacion.wav");
         
         Plotter plotter = new Plotter("Gráfica de audio", data);
         plotter.plotAudio();
         PlotDisplay p = new PlotDisplay();
-    }//GEN-LAST:event_btnPlotActionPerformed
+    }//GEN-LAST:event_btnPlotInputActionPerformed
 
-    private void btnPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlayActionPerformed
-        btnPlay.setEnabled(false);
-        am.play("Grabacion.wav");
-        btnPlay.setEnabled(true);
-    }//GEN-LAST:event_btnPlayActionPerformed
+    private void btnPlayInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlayInputActionPerformed
+        btnPlayInput.setEnabled(false);
+        AudioManager.play("Grabacion.wav");
+        btnPlayInput.setEnabled(true);
+    }//GEN-LAST:event_btnPlayInputActionPerformed
+
+    private void btnPlotOutputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlotOutputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPlotOutputActionPerformed
+
+    private void btnPlayOutputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlayOutputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPlayOutputActionPerformed
 
     /**
      * @param args the command line arguments
@@ -183,16 +209,16 @@ public class Recorder extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Recorder().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Recorder().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnPlay;
-    private javax.swing.JButton btnPlot;
+    private javax.swing.JButton btnPlayInput;
+    private javax.swing.JButton btnPlayOutput;
+    private javax.swing.JButton btnPlotInput;
+    private javax.swing.JButton btnPlotOutput;
     private javax.swing.JButton btnStart;
     private javax.swing.JButton btnStop;
     // End of variables declaration//GEN-END:variables

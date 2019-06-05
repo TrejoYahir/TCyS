@@ -62,7 +62,7 @@ public class Plotter {
             Logger.getLogger(Plotter.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        System.out.println("terminado");
+        System.out.println("Graficas generadas");
         
     }
     
