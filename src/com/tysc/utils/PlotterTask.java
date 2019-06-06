@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.tyc.utils;
+package com.tysc.utils;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -38,7 +38,7 @@ public class PlotterTask implements Callable<Void> {
     @Override
     public Void call() throws Exception {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        for(int i=0; i<data.length/8; i++){
+        for(int i=0; i < data.length; i++){
             dataset.addValue(data[i],"Audio Saliente",String.valueOf(i));
         }
         createChart(dataset);

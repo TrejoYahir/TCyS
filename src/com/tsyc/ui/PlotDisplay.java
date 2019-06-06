@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package com.tyc.ui;
+package com.tsyc.ui;
 
 import java.awt.FlowLayout;
 import java.awt.image.BufferedImage;
@@ -27,10 +27,11 @@ import javax.swing.JScrollPane;
  */
 public class PlotDisplay extends javax.swing.JFrame {
 
-    /** Creates new form PlotDisplay */
-    public PlotDisplay() {
+    /** Creates new form PlotDisplay
+     * @param suffix */
+    public PlotDisplay(String suffix) {
         initComponents();
-        showImages();
+        showImages(suffix);
     }
 
     /** This method is called from within the constructor to
@@ -58,8 +59,16 @@ public class PlotDisplay extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public static void showImages() {
-        String[] images = {"plot2-cropped.png", "plot3-cropped.png", "plot4-cropped.png", "plot5-cropped.png", "plot6-cropped.png", "plot7-cropped.png"};
+    public static void showImages(String suffix) {
+        String[] images = {
+            "plot1-" + suffix + "-cropped.png",
+            "plot2-" + suffix + "-cropped.png",
+            "plot3-" + suffix + "-cropped.png",
+            "plot4-" + suffix + "-cropped.png",
+            "plot5-" + suffix + "-cropped.png",
+            "plot6-" + suffix + "-cropped.png",
+            "plot7-" + suffix + "-cropped.png",
+            "plot8-" + suffix + "-cropped.png"};
         try {
             JFrame frame = new JFrame();
             // frame.setLayout(new FlowLayout());
@@ -79,7 +88,7 @@ public class PlotDisplay extends javax.swing.JFrame {
             jScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
             frame.getContentPane().add(jScrollPane);
             frame.setVisible(true);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
             
         } catch (MalformedURLException ex) {
             Logger.getLogger(PlotDisplay.class.getName()).log(Level.SEVERE, null, ex);
@@ -118,7 +127,7 @@ public class PlotDisplay extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PlotDisplay().setVisible(true);
+                new PlotDisplay(args[0]).setVisible(true);
             }
         });
     }

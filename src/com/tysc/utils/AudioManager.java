@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.tyc.utils;
+package com.tysc.utils;
 
 import java.applet.Applet;
 import java.applet.AudioClip;
@@ -12,6 +12,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.sound.sampled.AudioFileFormat;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
@@ -121,5 +123,30 @@ public class AudioManager {
 
         AudioClip clip = Applet.newAudioClip(url);
         clip.play();
+    }
+    
+    public static float getDuration(String fileName) {
+        AudioInputStream audioInputStream = null;
+        float durationInSeconds = 0;
+        try {
+            File file = new File(fileName);
+            audioInputStream = AudioSystem.getAudioInputStream(file);
+            AudioFormat format = audioInputStream.getFormat();
+            long audioFileLength = file.length();
+            int frameSize = format.getFrameSize();
+            float frameRate = format.getFrameRate();
+            durationInSeconds = (audioFileLength / (frameSize * frameRate));
+        } catch (UnsupportedAudioFileException ex) {
+            Logger.getLogger(AudioManager.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(AudioManager.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                audioInputStream.close();
+            } catch (IOException ex) {
+                Logger.getLogger(AudioManager.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return durationInSeconds;
     }
 }

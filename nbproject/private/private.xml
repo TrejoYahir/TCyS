@@ -3,12 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/yahar/Documents/ESCOM/ProyectoTyC/src/com/tyc/ui/PlotDisplay.java</file>
-            <file>file:/C:/Users/yahar/Documents/ESCOM/ProyectoTyC/src/com/tyc/utils/AudioManager.java</file>
-            <file>file:/C:/Users/yahar/Documents/ESCOM/ProyectoTyC/src/com/tyc/utils/PlotterTask.java</file>
-            <file>file:/C:/Users/yahar/Documents/ESCOM/ProyectoTyC/src/com/tyc/ui/Recorder.java</file>
-            <file>file:/C:/Users/yahar/Documents/ESCOM/ProyectoTyC/src/com/tyc/utils/Plotter.java</file>
-            <file>file:/C:/Users/yahar/Documents/ESCOM/ProyectoTyC/src/com/tyc/utils/AudioRecorder.java</file>
+            <file>file:/C:/Users/yahar/Documents/ESCOM/ProyectoTyC/src/com/tysc/utils/AudioRecorder.java</file>
+            <file>file:/C:/Users/yahar/Documents/ESCOM/ProyectoTyC/src/com/tysc/utils/AudioManager.java</file>
+            <file>file:/C:/Users/yahar/Documents/ESCOM/ProyectoTyC/src/com/tsyc/ui/PlotDisplay.java</file>
+            <file>file:/C:/Users/yahar/Documents/ESCOM/ProyectoTyC/src/com/tsyc/operations/BasicOperations.java</file>
+            <file>file:/C:/Users/yahar/Documents/ESCOM/ProyectoTyC/src/com/tysc/utils/Plotter.java</file>
+            <file>file:/C:/Users/yahar/Documents/ESCOM/ProyectoTyC/src/com/tsyc/ui/Recorder.java</file>
+            <file>file:/C:/Users/yahar/Documents/ESCOM/ProyectoTyC/src/com/tysc/utils/PlotterTask.java</file>
         </group>
     </open-files>
 </project-private>
