@@ -5,12 +5,8 @@
  */
 package com.tysc.utils;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.nio.channels.ClosedByInterruptException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.sound.sampled.AudioFileFormat;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
@@ -26,13 +22,17 @@ import javax.sound.sampled.TargetDataLine;
 public class AudioRecorder implements Runnable {
  
     // Nombre del archivo
-    File wavFile = new File("Grabacion.wav");
+    File wavFile;
  
     // formato de audio
     AudioFileFormat.Type fileType = AudioFileFormat.Type.WAVE;
  
     // Línea de entrada de audio
     TargetDataLine line;
+
+    public AudioRecorder(String fileName) {
+        wavFile = new File(fileName);
+    }
  
     /**
      * Define el formato de audio

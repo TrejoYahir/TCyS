@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Yahir
+ * @author itzel
  */
 public class BasicOperations {
     
@@ -21,7 +21,7 @@ public class BasicOperations {
             output[i] = input[i]*k;
         }
         System.out.println("SE AMPLIFICÓ EL SONIDO");
-        JOptionPane.showMessageDialog(null, "Se amplificó el audio");
+        JOptionPane.showMessageDialog(null, "Se amplificó la secuancia 1");
         newRecording(output);
         return output;
     }
@@ -33,7 +33,7 @@ public class BasicOperations {
             output[i] = input[i]/k;
         }
         System.out.println("SE ATENUÓ EL SONIDO");
-        JOptionPane.showMessageDialog(null, "Se atenuó el sonido");
+        JOptionPane.showMessageDialog(null, "Se atenuó la secuancia 1");
         newRecording(output);
         return output;
     }
@@ -91,7 +91,7 @@ public class BasicOperations {
             output[(input.length-1) - i] = input[i];
         }        
         System.out.println("SE REFLEJÓ EL SONIDO");
-        JOptionPane.showMessageDialog(null, "Se reflejó el sonido");
+        JOptionPane.showMessageDialog(null, "Se reflejó la secuancia 1");
         newRecording(output);
         return output;
     }
@@ -112,7 +112,7 @@ public class BasicOperations {
         }
         System.out.println("Recorrido " + j);
         System.out.println("SE APLICÓ LA DIEZMACIÓN");
-        JOptionPane.showMessageDialog(null, "Se aplicó la diezmación");
+        JOptionPane.showMessageDialog(null, "Se aplicó la diezmación a la secuancia 1");
         newRecording(output);
         return output;
     }
@@ -126,7 +126,7 @@ public class BasicOperations {
         System.out.println("Tamaño original: " + input.length);
         System.out.println("Tamaño nuevo: " + output.length);
         System.out.println("SE APLICÓ INTERPOLACIÓN CERO");
-        JOptionPane.showMessageDialog(null, "Se aplicó interpolación a cero");
+        JOptionPane.showMessageDialog(null, "Se aplicó interpolación a cero a la secuancia 1");
         newRecording(output);
         return output;
     }
@@ -144,7 +144,7 @@ public class BasicOperations {
             cont=0;
         }
         System.out.println("SE APLICÓ INTERPOLACIÓN ESCALÓN");
-        JOptionPane.showMessageDialog(null, "Se aplicó interpolación escalón");
+        JOptionPane.showMessageDialog(null, "Se aplicó interpolación escalón a la secuancia 1");
         System.out.println("Tamaño original: " + output.length);
         System.out.println("Tamaño nuevo: " + output.length);
         newRecording(output);
@@ -173,7 +173,7 @@ public class BasicOperations {
             cont=1;
         }
         System.out.println("SE APLICÓ INTERPOLACIÓN LINEAL");
-        JOptionPane.showMessageDialog(null, "Se aplicó interpolación lineal");
+        JOptionPane.showMessageDialog(null, "Se aplicó interpolación lineal a la secuancia 1");
         System.out.println("Tamaño original: " + input.length);
         System.out.println("Tamaño nuevo: " + output.length);
         newRecording(output);
